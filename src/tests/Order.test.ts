@@ -1,3 +1,6 @@
+import Item from '../Item';
+import Order from '../Order';
+
 test("Deve criar um pedido", function () {
 
     //given

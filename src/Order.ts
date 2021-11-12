@@ -1,5 +1,7 @@
+import Item from "./Item";
+
 export default class Order {
-    items: Array<Item>;
+    items: Item[];
 
     constructor() {
         this.items = [];
@@ -10,6 +12,11 @@ export default class Order {
     }
 
     getTotal() {
-        return this.items.reduce((prev, curr) => prev + curr);
+        // return this.items.reduce<Item[]>((prev, curr) => prev.price + curr.price, 0);
+        let total = 0;
+        for (const item of this.items) {
+            total += item.price;
+        }
+        return total;
     }
 }
