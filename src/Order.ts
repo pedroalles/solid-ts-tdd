@@ -1,3 +1,4 @@
+import { textSpanContainsTextSpan } from "typescript";
 import Item from "./Item";
 
 export default class Order {
@@ -9,6 +10,14 @@ export default class Order {
 
     addItem(item: Item) {
         this.items.push(item);
+    }
+
+    getTaxes() {
+        let taxes = 0;
+        for (const item of this.items) {
+            taxes += item.calculateTax();
+        }
+        return taxes;
     }
 
     getTotal() {
