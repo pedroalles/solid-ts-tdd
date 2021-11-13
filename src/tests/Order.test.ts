@@ -20,3 +20,14 @@ test('Deve criar um pedido e calcular os impostos', function () {
     const taxes = order.getTaxes();
     expect(taxes).toBe(21);
 });
+
+test('Deve criar um pedido e imprimir uma mensagem', function () {
+    const order = new Order();
+    order.addItem(new Beer('Brahma', 10));
+    order.addItem(new Whisky(' Jack Daniels', 100));
+    order.addItem(new Water('Fonte Ijuí', 2));
+    const message = order.printMessage();
+    expect(message).toBe(
+        'O total foi de R$ 112, os impostos foram R$ 21. Obrigado pela compra!'
+    );
+});

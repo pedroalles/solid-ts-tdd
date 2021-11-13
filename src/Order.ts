@@ -30,4 +30,5 @@ export default class Order {
         }
         return total;
     }
+
 }
