@@ -31,4 +31,9 @@ export default class Order {
         return total;
     }
 
+    printMessage() {
+        const message = `O total foi de R$ ${this.getTotal()}, os impostos foram R$ ${this.getTaxes()}. Obrigado pela compra!`;
+        return message;
+    }
+
 }
