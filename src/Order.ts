@@ -1,11 +1,14 @@
 import Item from "./Item";
 import TaxItem from "./TaxItem";
+import IMessageData from "./IMessageData";
 
 export default class Order {
     items: Item[];
+    messageData: IMessageData;
 
-    constructor() {
+    constructor(messageData: IMessageData) {
         this.items = [];
+        this.messageData = messageData;
     }
 
     addItem(item: Item) {
@@ -31,9 +34,12 @@ export default class Order {
         return total;
     }
 
-    printMessage() {
-        const message = `O total foi de R$ ${this.getTotal()}, os impostos foram R$ ${this.getTaxes()}. Obrigado pela compra!`;
-        return message;
+    async printMessage(language: string) {
+        const message = await this.messageData.read(language);
+        return message
+            .replace("{total}", (this.getTotal()).toString())
+            .replace("{taxes}", (this.getTaxes()).toString())
+            .trim();
     }
 
 }
