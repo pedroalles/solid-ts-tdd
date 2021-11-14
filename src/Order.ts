@@ -16,22 +16,16 @@ export default class Order {
     }
 
     getTaxes() {
-        let taxes = 0;
-        for (const item of this.items) {
+        return this.items.reduce((taxes, item) => {
             if (item instanceof TaxItem) {
-                taxes += item.calculateTax();
+                return taxes += item.calculateTax();
             }
-        }
-        return taxes;
+            return taxes;
+        }, 0);
     }
 
     getTotal() {
-        // return this.items.reduce<Item[]>((prev, curr) => prev.price + curr.price, 0);
-        let total = 0;
-        for (const item of this.items) {
-            total += item.price;
-        }
-        return total;
+        return this.items.reduce((total, item) => total + item.price, 0);
     }
 
     async printMessage(language: string) {
@@ -41,5 +35,4 @@ export default class Order {
             .replace("{taxes}", (this.getTaxes()).toString())
             .trim();
     }
-
 }
