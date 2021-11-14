@@ -16,7 +16,7 @@ export default class Order {
     }
 
     getTaxes() {
-        return this.items.reduce((taxes, item) => {
+        return this.items.reduce((taxes: number, item: Item) => {
             if (item instanceof TaxItem) {
                 return taxes += item.calculateTax();
             }
@@ -25,7 +25,7 @@ export default class Order {
     }
 
     getTotal() {
-        return this.items.reduce((total, item) => total + item.price, 0);
+        return this.items.reduce((total: number, item: Item) => total + item.price, 0);
     }
 
     async printMessage(language: string) {
